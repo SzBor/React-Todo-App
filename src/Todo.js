@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import AddTaskForm from "./AddTaskForm";
 import Footer from "./Footer";
+import TaskListItem from "./TaskListItem";
+import data from "./tasks.json";
+
+console.log(data);
 
 class Todo extends Component {
   render() {
@@ -15,23 +19,13 @@ class Todo extends Component {
             <input id="toggle-all" className="toggle-all" type="checkbox" />
             <label htmlFor="toggle-all">Mark all as complete</label>
             <ul className="todo-list">
-              <li className="editing">
-                <div className="view">
-                  <input className="toggle" type="checkbox" defaultChecked />
-                  <label>Be awesome</label>
-                  <button className="destroy" />
-                </div>
-                <input className="edit" defaultValue="Be awesome" />
-              </li>
-
-              <li className="">
-                <div className="view">
-                  <input className="toggle" type="checkbox" defaultChecked />
-                  <label>Be awesome</label>
-                  <button className="destroy" />
-                </div>
-                <input className="edit" defaultValue="Be awesome" />
-              </li>
+              {data.tasks.map(task => (
+                <TaskListItem
+                  isEditing={false}
+                  taskTitle={task.title}
+                  isDone={task.isDone}
+                />
+              ))}
             </ul>
           </section>
           <footer className="footer">
