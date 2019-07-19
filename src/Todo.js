@@ -6,6 +6,22 @@ import data from "./tasks.json";
 
 console.log(data);
 
+const options = [
+  {
+    href: "",
+    isActive: true,
+    labe: "All"
+  },
+  {
+    href: "active",
+    label: "Active"
+  },
+  {
+    href: "completed",
+    label: "Completed"
+  }
+];
+
 class Todo extends Component {
   render() {
     return (
@@ -31,17 +47,16 @@ class Todo extends Component {
           <footer className="footer">
             <span className="todo-count" />
             <ul className="filters">
-              <li>
-                <a href="#/" className="selected">
-                  All
-                </a>
-              </li>
-              <li>
-                <a href="#/active">Active</a>
-              </li>
-              <li>
-                <a href="#/completed">Completed</a>
-              </li>
+              {options.map(option => (
+                <li>
+                  <a
+                    href={`#/${option.href}`}
+                    className={option.isActive ? "selected" : ""}
+                  >
+                    {option.label}
+                  </a>
+                </li>
+              ))}
             </ul>
             <button className="clear-completed">Clear completed</button>
           </footer>
