@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import AddTaskForm from "./AddTaskForm";
+import Footer from "./Footer";
 
 class Todo extends Component {
   render() {
@@ -7,11 +9,7 @@ class Todo extends Component {
         <section className="todoapp">
           <header className="header">
             <h1>Todos</h1>
-            <input
-              className="new-todo"
-              placeholder="What needs to be done?"
-              autoFocus
-            />
+            <AddTaskForm />
           </header>
           <section className="main">
             <input id="toggle-all" className="toggle-all" type="checkbox" />
@@ -54,19 +52,7 @@ class Todo extends Component {
             <button className="clear-completed">Clear completed</button>
           </footer>
         </section>
-        <footer className="info">
-          <p>Double-click to edit a todo</p>
-          <p>
-            Created by <a href="http://twitter.com/oscargodson">Oscar Godson</a>
-          </p>
-          <p>
-            Refactored by
-            <a href="https://github.com/cburgmer">Christoph Burgmer</a>
-          </p>
-          <p>
-            Part of <a href="http://todomvc.com">TodoMVC</a>
-          </p>
-        </footer>
+        <Footer />
       </div>
     );
   }
