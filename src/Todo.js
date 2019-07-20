@@ -1,24 +1,24 @@
-import React, { Component } from "react";
-import AddTaskForm from "./AddTaskForm";
-import Footer from "./Footer";
-import TaskListItem from "./TaskListItem";
-import data from "./tasks.json";
+import React, { Component } from 'react';
+import AddTaskForm from './AddTaskForm';
+import Footer from './Footer';
+import TaskListItem from './TaskListItem';
+import data from './tasks.json';
 
 console.log(data);
 
 const options = [
   {
-    href: "",
+    href: '',
     isActive: true,
-    labe: "All"
+    labe: 'All'
   },
   {
-    href: "active",
-    label: "Active"
+    href: 'active',
+    label: 'Active'
   },
   {
-    href: "completed",
-    label: "Completed"
+    href: 'completed',
+    label: 'Completed'
   }
 ];
 
@@ -42,10 +42,10 @@ const Controls = props => (
     <span className="todo-count" />
     <ul className="filters">
       {options.map(option => (
-        <li>
+        <li key={option.href}>
           <a
             href={`#/${option.href}`}
-            className={option.isActive ? "selected" : ""}
+            className={option.isActive ? 'selected' : ''}
           >
             {option.label}
           </a>
@@ -67,6 +67,7 @@ class Todo extends Component {
           <Main>
             {data.tasks.map(task => (
               <TaskListItem
+                key={task.id}
                 isEditing={false}
                 taskTitle={task.title}
                 isDone={task.isDone}
