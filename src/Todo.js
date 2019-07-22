@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
-import AddTaskForm from './AddTaskForm';
-import Footer from './Footer';
-import TaskListItem from './TaskListItem';
-import Header from './Header.js';
-import Main from './Main.js';
-import Controls from './Controls.js';
+import AddTaskForm from './components/AddTaskForm.js';
+import Footer from './components/Footer.js';
+import TaskListItem from './components/TaskListItem.js';
+import Header from './components/Header.js';
+import Main from './components/Main.js';
+import Controls from './components/Controls.js';
 
-import './base.css'
-import './index.css'
+import './base.css';
+import './index.css';
 
 import data from './tasks.json';
-
 
 class Todo extends Component {
   render() {
