@@ -12,6 +12,52 @@ import './index.css';
 import data from './tasks.json';
 
 class Todo extends Component {
+  state = {
+    tasks: data.tasks
+  };
+
+  toggleIsDone = taskId => {
+    this.setState({
+      tasks: this.state.tasks.map(task =>
+        task.id !== taskId
+          ? task
+          : {
+              ...task,
+              isDone: !task.isDone
+            }
+      )
+    });
+  };
+
+  addTask = taskTitle => {
+    this.setState({
+      tasks: this.state.tasks.concat({
+        id: Date.now(),
+        title: taskTitle,
+        isDone: false
+      })
+    });
+  };
+
+  removeTask = taskId => {
+    this.setState({
+      tasks: this.state.tasks.filter(task => task.id !== taskId)
+    });
+  };
+
+  updateTask = (taskId, taskTitle) => {
+    this.setState({
+      tasks: this.state.tasks.map(task =>
+        task.id !== taskId
+          ? task
+          : {
+              ...task,
+              title: taskTitle
+            }
+      )
+    });
+  };
+
   render() {
     return (
       <div>
@@ -20,7 +66,7 @@ class Todo extends Component {
             <AddTaskForm />
           </Header>
           <Main>
-            {data.tasks.map(task => (
+            {this.state.tasks.map(task => (
               <TaskListItem
                 key={task.id}
                 isEditing={false}
