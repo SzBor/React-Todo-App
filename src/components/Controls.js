@@ -19,6 +19,24 @@ class Controls extends Component {
     ]
   };
 
+  activate = href => {
+    this.setState({
+      options: this.state.options.map(option =>
+        option.href !== href
+          ? option.isActive === true
+            ? {
+                ...option,
+                isActive: false
+              }
+            : option
+          : {
+              ...option,
+              isActive: true
+            }
+      )
+    });
+  };
+
   render() {
     return (
       <footer className="footer">
@@ -28,6 +46,7 @@ class Controls extends Component {
             <li key={option.href}>
               <a
                 href={`#/${option.href}`}
+                onClick={() => this.activate(option.href)}
                 className={option.isActive ? 'selected' : ''}
               >
                 {option.label}
