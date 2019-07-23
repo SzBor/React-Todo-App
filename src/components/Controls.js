@@ -27,27 +27,29 @@ class Controls extends Component {
         if (option.isActive) {
           return {
             ...option,
-            isActive: false,
+            isActive: false
           };
         }
-        return option
+        return option;
       }
       return {
         ...option,
-        isActive:true,
-      }
+        isActive: true
+      };
     });
     this.setState({
-      options: newOptions,
+      options: newOptions
     });
   };
 
   render() {
+    const { options } = this.state;
+    const { onClearCompleted } = this.props;
     return (
       <footer className="footer">
         <span className="todo-count" />
         <ul className="filters">
-          {this.state.options.map(option => (
+          {options.map(option => (
             <li key={option.href}>
               <a
                 href={`#/${option.href}`}
@@ -59,8 +61,9 @@ class Controls extends Component {
             </li>
           ))}
         </ul>
-        <button className="clear-completed"
-        onClick={this.props.onClearCompleted}>Clear completed</button>
+        <button className="clear-completed" onClick={onClearCompleted}>
+          Clear completed
+        </button>
       </footer>
     );
   }
