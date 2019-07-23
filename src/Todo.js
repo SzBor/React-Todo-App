@@ -11,24 +11,21 @@ import './index.css';
 
 import data from './tasks.json';
 
-
-const defaultOptions = [{
-  options: [
-    {
-      href: '',
-      isActive: true,
-      label: 'All'
-    },
-    {
-      href: 'active',
-      label: 'Active'
-    },
-    {
-      href: 'completed',
-      label: 'Completed'
-    }
-  ]
-}];
+const defaultOptions = [
+  {
+    href: '',
+    isActive: true,
+    label: 'All'
+  },
+  {
+    href: 'active',
+    label: 'Active'
+  },
+  {
+    href: 'completed',
+    label: 'Completed'
+  }
+];
 
 class Todo extends Component {
   state = {
@@ -39,7 +36,7 @@ class Todo extends Component {
 
   activateFilter = filterName => {
     this.setState({
-      activeFilterName: filterName,
+      activeFilterName: filterName
     });
   };
 
