@@ -13,7 +13,8 @@ import data from './tasks.json';
 
 class Todo extends Component {
   state = {
-    tasks: data.tasks
+    tasks: data.tasks,
+    searchPhrase: ''
   };
 
   toggleIsDone = taskId => {
@@ -58,22 +59,36 @@ class Todo extends Component {
     });
   };
 
+  handleSearchChange = event => {
+    this.setState({
+      searchPhrase: event.target.value
+    });
+  };
+
   render() {
     return (
       <div>
+        <input
+          type="text"
+          value={this.state.searchPhrase}
+          onChange={this.handleSearchChange}
+        />
         <section className="todoapp">
           <Header>
             <AddTaskForm handleData={this.addTask} />
           </Header>
           <Main>
-            {this.state.tasks.map(task => (
-              <TaskListItem
-                key={task.id}
-                isEditing={false}
-                taskTitle={task.title}
-                isDone={task.isDone}
-              />
-            ))}
+            {this.state.tasks
+              .filter(task => task.title.includes(this.state.searchPhrase))
+              .map(task => (
+                <TaskListItem
+                  key={task.id}
+                  isEditing={false}
+                  taskTitle={task.title}
+                  isDone={task.isDone}
+                  onToggle={() => this.toggleIsDone(task.id)}
+                />
+              ))}
           </Main>
 
           <Controls />
