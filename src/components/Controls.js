@@ -6,7 +6,7 @@ class Controls extends Component {
       {
         href: '',
         isActive: true,
-        labe: 'All'
+        label: 'All'
       },
       {
         href: 'active',
@@ -20,6 +20,7 @@ class Controls extends Component {
   };
 
   activate = href => {
+    this.props.onActivateFilter(href);
     const oldOptions = this.state.options;
 
     const newOptions = oldOptions.map(option => {

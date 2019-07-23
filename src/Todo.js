@@ -14,7 +14,14 @@ import data from './tasks.json';
 class Todo extends Component {
   state = {
     tasks: data.tasks,
-    searchPhrase: ''
+    searchPhrase: '',
+    activeFilterName: ''
+  };
+
+  activateFilter = filterName => {
+    this.setState({
+      activeFilterName: filterName
+    });
   };
 
   toggleIsDone = taskId => {
@@ -46,11 +53,11 @@ class Todo extends Component {
     });
   };
 
-  clearCompleted = () =>{
+  clearCompleted = () => {
     this.setState({
       tasks: this.state.tasks.filter(task => task.isDone === false)
-    })
-  }
+    });
+  };
 
   updateTask = (taskId, taskTitle) => {
     this.setState({
@@ -86,6 +93,13 @@ class Todo extends Component {
           <Main>
             {this.state.tasks
               .filter(task => task.title.includes(this.state.searchPhrase))
+              .filter(task =>
+                this.state.activeFilterName === 'completed'
+                  ? task.isDone
+                  : this.state.activeFilterName === 'active'
+                  ? task.isDone === false
+                  : true
+              )
               .map(task => (
                 <TaskListItem
                   key={task.id}
@@ -98,7 +112,10 @@ class Todo extends Component {
               ))}
           </Main>
 
-          <Controls onClearCompleted={this.clearCompleted} />
+          <Controls
+            onClearCompleted={this.clearCompleted}
+            onActivateFilter={this.activateFilter}
+          />
         </section>
         <Footer />
       </div>
