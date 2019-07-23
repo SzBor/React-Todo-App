@@ -2,21 +2,7 @@ import React, { Component } from 'react';
 
 class Controls extends Component {
   state = {
-    options: [
-      {
-        href: '',
-        isActive: true,
-        label: 'All'
-      },
-      {
-        href: 'active',
-        label: 'Active'
-      },
-      {
-        href: 'completed',
-        label: 'Completed'
-      }
-    ]
+    options: this.props.options,
   };
 
   activate = href => {
