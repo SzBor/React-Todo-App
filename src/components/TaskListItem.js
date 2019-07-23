@@ -1,14 +1,23 @@
-import React from "react";
+import React from 'react';
 
-const TaskListItem = props => (
-  <li className={props.isDone ? "completed" : props.isEditing ? "editing" : ""}>
-    <div className="view">
-      <input className="toggle" type="checkbox" defaultChecked={props.isDone} />
-      <label>{props.taskTitle}</label>
-      <button className="destroy" />
-    </div>
-    <input className="edit" defaultValue={props.taskTitle} />
-  </li>
-);
+const TaskListItem = ({ isDone, isEditing, taskTitle, onToggle }) => {
+  const className = isDone ? 'completed' : isEditing ? 'editing' : '';
+
+  return (
+    <li className={className}>
+      <div className="view">
+        <input
+          className="toggle"
+          onChange={onToggle}
+          type="checkbox"
+          defaultChecked={isDone}
+        />
+        <label>{taskTitle}</label>
+        <button className="destroy" />
+      </div>
+      <input className="edit" defaultValue={taskTitle} />
+    </li>
+  );
+};
 
 export default TaskListItem;
