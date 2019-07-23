@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TaskListItem = ({ isDone, isEditing, taskTitle, onToggle }) => {
+const TaskListItem = ({ isDone, isEditing, taskTitle, onToggle, onRemove }) => {
   const className = isDone ? 'completed' : isEditing ? 'editing' : '';
 
   return (
@@ -13,7 +13,7 @@ const TaskListItem = ({ isDone, isEditing, taskTitle, onToggle }) => {
           defaultChecked={isDone}
         />
         <label>{taskTitle}</label>
-        <button className="destroy" />
+        <button className="destroy" onClick={onRemove} />
       </div>
       <input className="edit" defaultValue={taskTitle} />
     </li>

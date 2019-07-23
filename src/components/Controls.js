@@ -20,20 +20,25 @@ class Controls extends Component {
   };
 
   activate = href => {
+    const oldOptions = this.state.options;
+
+    const newOptions = oldOptions.map(option => {
+      if (option.href !== href) {
+        if (option.isActive) {
+          return {
+            ...option,
+            isActive: false,
+          };
+        }
+        return option
+      }
+      return {
+        ...option,
+        isActive:true,
+      }
+    });
     this.setState({
-      options: this.state.options.map(option =>
-        option.href !== href
-          ? option.isActive === true
-            ? {
-                ...option,
-                isActive: false
-              }
-            : option
-          : {
-              ...option,
-              isActive: true
-            }
-      )
+      options: newOptions,
     });
   };
 
@@ -54,7 +59,8 @@ class Controls extends Component {
             </li>
           ))}
         </ul>
-        <button className="clear-completed">Clear completed</button>
+        <button className="clear-completed"
+        onClick={this.props.onClearCompleted}>Clear completed</button>
       </footer>
     );
   }

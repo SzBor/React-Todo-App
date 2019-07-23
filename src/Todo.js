@@ -46,6 +46,12 @@ class Todo extends Component {
     });
   };
 
+  clearCompleted = () =>{
+    this.setState({
+      tasks: this.state.tasks.filter(task => task.isDone === false)
+    })
+  }
+
   updateTask = (taskId, taskTitle) => {
     this.setState({
       tasks: this.state.tasks.map(task =>
@@ -87,11 +93,12 @@ class Todo extends Component {
                   taskTitle={task.title}
                   isDone={task.isDone}
                   onToggle={() => this.toggleIsDone(task.id)}
+                  onRemove={() => this.removeTask(task.id)}
                 />
               ))}
           </Main>
 
-          <Controls />
+          <Controls onClearCompleted={this.clearCompleted} />
         </section>
         <Footer />
       </div>
