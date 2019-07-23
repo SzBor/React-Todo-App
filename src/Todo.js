@@ -63,7 +63,7 @@ class Todo extends Component {
       <div>
         <section className="todoapp">
           <Header>
-            <AddTaskForm />
+            <AddTaskForm handleData={this.addTask} />
           </Header>
           <Main>
             {this.state.tasks.map(task => (
